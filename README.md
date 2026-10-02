@@ -22,6 +22,5 @@ Hệ thống được thiết kế và triển khai hoàn toàn bằng Docker Co
 
 ### Các bước thực hiện:
 1. Clone Repository từ GitHub:
-   ```bash
-   git clone [https://github.com/dtc245200792-2310/dtc245200792.git](https://github.com/dtc245200792-2310/dtc245200792.git)
-   cd dtc245200792
+  git clone https://github.com/dtc245200792-2310/dtc245200792.git
+cd dtc245200792
