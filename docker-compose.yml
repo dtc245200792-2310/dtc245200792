@@ -20,6 +20,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin_tool
+    restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@domain.com
       PGADMIN_DEFAULT_PASSWORD: SecurePassword123!
@@ -27,6 +28,9 @@ services:
       - "8080:80"
     networks:
       - backend-net
+      - frontend-net
+    depends_on:
+      - postgres
 
     # 2. Reverse Proxy (Yêu cầu 3)
   nginx:
