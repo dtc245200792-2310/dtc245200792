@@ -17,6 +17,22 @@ services:
     networks:
       - backend-net
 
+  app:
+    build: ./app
+    container_name: pm_app
+    restart: always
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: SecurePassword123!
+      POSTGRES_DB: project_db
+    networks:
+      - backend-net
+      - frontend-net
+      - monitoring-net
+    depends_on:
+      - postgres
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin_tool
@@ -32,7 +48,7 @@ services:
     depends_on:
       - postgres
 
-    # 2. Reverse Proxy (Yêu cầu 3)
+  # 2. Reverse Proxy (Yêu cầu 3)
   nginx:
     image: nginx:alpine
     container_name: nginx_proxy
