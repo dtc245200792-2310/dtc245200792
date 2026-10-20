@@ -74,17 +74,21 @@ services:
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
+    ports:
+      - "8088:8080"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - monitoring-net
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:10.4.8
     container_name: grafana
+    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
@@ -99,6 +103,9 @@ services:
     container_name: loki
     ports:
       - "3100:3100"
+    volumes:
+      - ./loki/loki-config.yml:/etc/loki/local-config.yaml:ro
+    command: -config.file=/etc/loki/local-config.yaml
     networks:
       - monitoring-net
 
@@ -107,6 +114,8 @@ services:
     container_name: promtail
     volumes:
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./promtail/promtail-config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
     networks:
       - monitoring-net

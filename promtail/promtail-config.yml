@@ -16,4 +16,8 @@ scrape_configs:
     relabel_configs:
       - source_labels: ['__meta_docker_container_name']
         regex: '/(.*)'
-        target_label: 'container'S
+        target_label: 'container'
+        replacement: '$1'
+      - source_labels: ['__meta_docker_container_id']
+        target_label: '__path__'
+        replacement: '/var/lib/docker/containers/$1/$1-json.log'

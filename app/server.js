@@ -202,7 +202,7 @@ app.get('/', async (req, res) => {
       <header class="topbar"><div class="brand"><i class="fa-solid fa-list-check"></i>Quản lý dự án</div><div class="db-state"><i class="fa-solid fa-database"></i> PostgreSQL: ${escapeHtml(dbStatus)}</div></header>
       <main>
         <div class="page-heading"><div><h1>Bảng công việc</h1><div class="subtitle">Đỗ Bình An · dtc245200792 · Triển khai &amp; Quản trị HT Phần mềm</div></div>
-          <button class="primary-button" data-bs-toggle="modal" data-bs-target="#taskModal"><i class="fa-solid fa-plus"></i> Thêm công việc</button></div>
+          <button class="primary-button" data-bs-toggle="modal" data-bs-target="#taskModal"><i class="fa-solid fa-plus"></i> Thêm dự án</button></div>
         <section class="summary" aria-label="Tổng quan công việc">
           <div class="summary-item"><span>Tổng công việc</span><strong>${tasks.length}</strong></div>
           <div class="summary-item"><span>Đang thực hiện</span><strong>${counts['In Progress']}</strong></div>
